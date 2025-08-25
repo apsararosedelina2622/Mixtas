@@ -1,0 +1,203 @@
+.navbar-toggler {
+    position: absolute;
+    top: 13px;
+    left: 10px;
+}  
+
+.carousel .swiper-button-next::after, .carousel .swiper-button-prev::after{
+    color: black !important;
+    background-color: white;
+    font-size: 12px !important;
+    padding: 20px 25px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 5px gray; 
+}
+
+.carousel .swiper-button-next{
+    margin-right: 40px;
+}
+
+.carousel .swiper-button-prev{
+    margin-left: 40px;
+}
+
+.swiper-button-next::after, .swiper-button-prev::after {
+    color: black !important;
+    background-color: white;
+    font-size: 12px !important;
+    padding: 15px 19px;
+    border-radius: 50%;
+    box-shadow: 1px 1px 5px gray;
+}
+
+.custom-carousel .carousel-indicators button {
+  background-color: black !important;
+  border: none ;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.custom-carousel .carousel-indicators .active {
+  opacity: 1; 
+}
+
+.product-navbar{
+    z-index: 5;
+}
+
+.custom-dropdown-toggle::after {
+    display: none !important;
+}  
+
+.c-btn:hover{
+    color: black;
+    background-color: white;
+    border: none;
+}
+
+.card1 {
+    background-color: #cbc5b9;
+}
+
+.card2 {
+    background-color: #80a6a7;
+}
+
+.card3 {
+    background-color: #b78259;
+}
+
+.card4 {
+    background-color: #d2d4d1;
+}
+
+.img-grid{
+    display: grid;
+    gap: 20px;
+}
+
+.img-grid .section-1{
+    grid-column: 1 / span 2;
+}
+
+.img-grid .section-2{
+    grid-column: 3;
+    grid-row: 1 / span 2;
+}
+
+@media screen and (max-width : 768px) {
+    .img-grid .section-2{
+        grid-column: 1 / span 2;
+        grid-row: 3;
+    }
+    .img-grid .section-2 img{
+        height: 700px;
+    }
+}
+
+@media screen and (max-width : 320px) {
+    .img-grid .section-1{
+        grid-column: 1;
+    }
+    .img-grid .section-1 img{
+        height: 300px;
+    }
+    .img-grid .section-2{
+        grid-column: 1;
+        grid-row: 4;
+    }
+    .img-grid .section-2 img{
+        height: 600px;
+    }
+}
+
+.blog-img img{
+    transition-duration: 1s;
+}
+
+.blog-img:hover img{
+    transform: scale(1.2,1.2);
+}
+
+.footer{
+    background-color: black;
+}
+
+.footer .col-lg-2 p:hover{
+    color: gray;
+    cursor: pointer;
+}
+
+.footer i:hover{
+    color:black ;
+    background-color: white;
+}
+
+.wishlist:hover , .description:hover{
+    color: gray;
+}
+
+.ratings i{
+    color: #eeeeee ;
+}
+
+.tagbtn{
+    color: gray;
+    background-color: #eeeeee;
+}
+
+.dropdown_Item:hover , .show_more_btn:hover , .tagbtn:hover{
+    color: white;
+    background-color: black;
+}
+
+.shop_filter:hover{
+    color: black;
+}
+
+.drop_down:hover{
+    border-left: 5px solid black;
+    position: relative;
+    left: 10px;
+    background-color: white;
+}
+
+.pro_img{
+    height: 120px;
+}
+
+@media (min-width:300px) and (max-width:490px) {
+    .pro_img{
+        height: 58px;
+    }
+}
+
+.icon-wrapper {
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+  
+@keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+}
+ 
+.nav-tabs .nav-link {
+    color: grey;
+    font-size: 28px;
+    font-weight: 500; 
+    border: none; 
+}
+
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link.active {
+    border: none; 
+    color: black; 
+    background-color: transparent; 
+}
+
+.nav-tabs {
+    padding: 15px;
+    border-bottom: none; 
+}
