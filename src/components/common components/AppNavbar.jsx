@@ -128,36 +128,34 @@ const AppNavbar = () => {
               :
               <>
                 <hr className='m-0' />
-                <div className='my-3 d-flex flex-column justify-content-between'>
-                  <div className='flex-grow-1' style={{ maxHeight: "550px", overflowY: "auto", overflowX: "hidden" }}>
+                <div className='my-3 d-flex flex-column' style={{ height: "95%" }}>
 
+                  <div style={{ flex: "1", overflowY: "auto", maxHeight: "550px", overflowX: "hidden" }}>
                     {
                       cart.map((value, index) => {
                         return (
                           <div className='row p-1 mt-3 my-auto' key={index}>
-
                             <div className="col-3">
                               <img src={value.img} className="rounded" height={95} alt="Product Image" />
                             </div>
 
                             <div className="col-7">
-                              <p className='mx-2 m-0'>{value.desc.slice(0 , 20)}...</p>
+                              <p className='mx-2 m-0'>{value.desc.slice(0, 20)}...</p>
                               <h6 className='mx-2'>${value.price}</h6>
                               <p className='mx-2 m-0'>Quantity : {value.quantity}</p>
                             </div>
 
                             <div className="col-2 my-auto">
-                              <i class="fa-regular fa-circle-xmark text-danger fs-5" onClick={() => RemoveCart(value.id)}></i>
+                              <i className="fa-regular fa-circle-xmark text-danger fs-5"
+                                onClick={() => RemoveCart(value.id)}></i>
                             </div>
-
                           </div>
                         )
                       })
                     }
-
                   </div>
 
-                  <div>
+                  <div className='border-top pt-2'>
                     <div className="d-flex justify-content-between my-2">
                       <b>Subtotal:</b>
                       <p className='text-secondary'>${getCartTotal().toFixed(2)}</p>
