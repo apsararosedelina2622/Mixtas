@@ -29,12 +29,12 @@ const App = () => {
           <Scroll_To_Top />
           <Routes>
 
-            <Route path='/' element={<Home_Page />} /> {/* ☑️ */}
+            <Route path='/' element={<Home_Page />} />
             <Route path='/product/:id' element={<Product_Page />} />
             <Route path='/shop' element={<Shop_Page />} />
-            <Route path='/blog/:id' element={<Blog_page />} />
+            <Route path='/blog/:blogID' element={<Blog_page />} />
             <Route path='/order-tracking' element={<Order_Tracking_Page />} />
-            <Route path='/cart' element={<Cart_Page />} /> 
+            <Route path='/cart' element={<Cart_Page />} />
             <Route path='/wishlist' element={<Wish_List_Page />} />
             <Route path='/faqs' element={<FAQ_Page />} />
             <Route path='/my-account' element={<My_Account_Page />} />

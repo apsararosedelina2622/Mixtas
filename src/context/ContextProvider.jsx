@@ -1,9 +1,9 @@
 import React, { createContext, useState } from 'react'
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useAccordionButton } from 'react-bootstrap'
 
-import { product } from '../assets/assets'
+import { blog, product } from '../assets/assets'
 
 export const MyContext = createContext()
 
@@ -82,6 +82,11 @@ const ContextProvider = ({ children }) => {
 
 
     // Shop Body
+
+    let { id } = useParams()
+    const selectedProduct = product.find((e) => e.id === Number(id))
+
+    const [currentImage, setCurrentImage] = useState(selectedProduct?.img)
 
     const [shopHoveredIndex, setShopHoveredIndex] = useState(null)
 
@@ -266,6 +271,30 @@ const ContextProvider = ({ children }) => {
         setWishListCount(a => a - 1)
     }
 
+    // Blog Page
+
+    const { blogID } = useParams()
+
+    const blogs = blog?.find((e) => e.id === Number(blogID))
+
+    let nextId = Number(blogID) + 1
+    let prevId = Number(blogID) - 1
+    let nextDesc = ''
+    let prevDesc = ''
+
+    let max_id = Object.keys(blog).length
+    {
+        blog.map((e) => {
+
+            if (nextId === e.id) {
+                nextDesc = e.desc
+            }
+            if (prevId == e.id) {
+                prevDesc = e.desc
+            }
+        })
+    }
+
 
 
 
@@ -297,6 +326,7 @@ const ContextProvider = ({ children }) => {
         handlePopularModalToggle,
 
         // Shop Body
+        selectedProduct, currentImage,
         shopHoveredIndex, setShopHoveredIndex,
         pro_category, setPro_category,
         price_div, setPrice_div,
@@ -330,13 +360,17 @@ const ContextProvider = ({ children }) => {
 
         // Wish List
         WishList, wishListData, wishListCount,
-        RemoveWishListData
+        RemoveWishListData,
+
+        // Blog Page
+        blogs, max_id, blogID,
+        nextDesc, prevDesc
 
     }
 
     return (
         <MyContext.Provider value={contextValue}>
-            { children }
+            {children}
         </MyContext.Provider>
     )
 }

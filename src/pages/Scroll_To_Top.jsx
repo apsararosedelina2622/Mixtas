@@ -11,6 +11,7 @@ const Scroll_To_Top = () => {
   }, [pathname])
 
   return null
+  
 }
 
 export default Scroll_To_Top

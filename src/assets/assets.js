@@ -617,12 +617,6 @@ export const product = [
     },
 ]
 
-export const grid_img = {
-    grid_img1,
-    grid_img2,
-    grid_img3
-}
-
 export const popular_brand = [
     {
         img: popular_brand_img1

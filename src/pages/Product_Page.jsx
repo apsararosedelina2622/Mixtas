@@ -1,15 +1,19 @@
 import React from 'react'
 
-import ProductNavbar from '../components/product page components/ProductNavbar'
+import ProductNavbar from '../components/common components/ProductNavbar'
 import ProductBody from '../components/product page components/ProductBody'
 import RelatedProducts from '../components/product page components/RelatedProducts'
-import Footer from '../components/home page components/Footer'
+import Footer from '../components/common components/Footer'
+
+import ContextProvider from '../context/ContextProvider'
 
 const Product = () => {
   return (
     <>
       <ProductNavbar />
-      <ProductBody />
+      <ContextProvider>
+        <ProductBody />
+      </ContextProvider>
       <RelatedProducts />
       <Footer />
     </>

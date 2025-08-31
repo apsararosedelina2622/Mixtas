@@ -5,7 +5,6 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import { Link } from 'react-router-dom'
 
 import { MyContext } from '../../context/ContextProvider'
-
 import { product } from '../../assets/assets'
 
 const ShopBody = () => {
@@ -243,6 +242,7 @@ const ShopBody = () => {
                                         className='col-lg-4 col-md-6 my-3 position-relative'
                                         key={new_arr.desc}
                                         onMouseEnter={() => setShopHoveredIndex(index)}
+                                        onMouseLeave={() => setShopHoveredIndex(null)}
                                     >
                                         <div className="position-relative" onClick={() => navigate('/product/' + new_arr.id)}>
                                             <img src={shopHoveredIndex === index ? new_arr.hover_img : new_arr.img} alt={new_arr.desc} className='w-100' />
@@ -256,17 +256,17 @@ const ShopBody = () => {
 
                                         {shopHoveredIndex === index && (
                                             <div className="position-absolute top-0 end-0 p-2">
-                                                <div className="icon-wrapper" style={{ animationDelay: "0.3s" }} onClick={() => WishList(new_arr.id)}>
-                                                    <i className={`fa-heart mx-4 fs-5 my-2 p-2 shadow-sm bg-white rounded-circle ${wishListData.some(a => a.id === new_arr.id)
-                                                        ? 'fa-solid text-dark'
-                                                        : 'fa-regular'
+                                                <div role='button' className="icon-wrapper mt-2 me-3" style={{ animationDelay: "0.3s" }} onClick={() => WishList(new_arr.id)}>
+                                                    <i className={`bi p-3 d-flex justify-content-center fs-5 shadow bg-white rounded-circle ${wishListData.some(a => a.id === new_arr.id)
+                                                        ? 'bi-suit-heart-fill text-dark'
+                                                        : 'bi-suit-heart'
                                                         }`} size={30} />
                                                 </div>
-                                                <div className="icon-wrapper" style={{ animationDelay: "0.2s" }}>
-                                                    <i className="fa-solid fs-5 fa-magnifying-glass text-dark mx-4 my-1 p-2 shadow-sm bg-white rounded-circle" size={30} onClick={() => handleShopModalToggle(new_arr)} />
+                                                <div role='button' className="icon-wrapper mt-2 me-3" style={{ animationDelay: "0.2s" }}>
+                                                    <i className="bi p-3 d-flex justify-content-center fs-5 bi-search text-dark shadow bg-white rounded-circle" size={30} onClick={() => handleShopModalToggle(new_arr)} />
                                                 </div>
-                                                <div className="icon-wrapper mt-2" style={{ animationDelay: "0.1s" }} onClick={() => ToggleCart(new_arr.id)}>
-                                                    <i className={`mx-4 my-2 px-2 py-1 fs-5 shadow-sm bg-white rounded-circle bi ${cart.some(a => a.id === new_arr.id)
+                                                <div role='button' className="icon-wrapper mt-2 me-3" style={{ animationDelay: "0.1s" }} onClick={() => ToggleCart(new_arr.id)}>
+                                                    <i className={`bi p-3 d-flex justify-content-center fs-5 shadow bg-white rounded-circle ${cart.some(a => a.id === new_arr.id)
                                                         ? 'bi-cart-fill'
                                                         : 'bi-cart'
                                                         }`} size={30} />
@@ -287,7 +287,7 @@ const ShopBody = () => {
             </div>
 
             {currentShopProduct && (
-                <Modal show={ShopShowModal} onHide={handleShopModalToggle} size="xl">
+                <Modal show={ShopShowModal} onHide={handleShopModalToggle} size="xl" centered>
                     <Modal.Header closeButton></Modal.Header>
                     <Modal.Body>
                         {isVisible && (
@@ -331,16 +331,16 @@ const ShopBody = () => {
 
                                 <div onClick={() => WishList(currentShopProduct.id)} className='d-flex' role='button'>
                                     <div>
-                                        <i className={`fa-heart ${wishListData.some(a => a.id === currentShopProduct.id)
-                                            ? 'fa-solid text-danger'
-                                            : 'fa-regular'
+                                        <i className={`bi fs-5 ${wishListData.some(a => a.id === currentShopProduct.id)
+                                            ? 'bi-suit-heart-fill text-danger'
+                                            : 'bi-suit-heart'
                                             }`}></i>
                                     </div>
-                                    <div className='mx-2'>
+                                    <div className='mx-2 my-1'>
                                         <p>
                                             {wishListData.some(a => a.id === currentShopProduct.id)
-                                                ? 'Browse wishlist'
-                                                : 'Add to wishlist'}
+                                                ? 'Remove from Wishlist'
+                                                : 'Add to Wishlist'}
                                         </p>
                                     </div>
                                 </div>

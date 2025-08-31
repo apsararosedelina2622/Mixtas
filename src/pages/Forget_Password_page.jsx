@@ -1,8 +1,8 @@
 import React from 'react'
 
-import ProductNavbar from '../components/product page components/ProductNavbar'
+import ProductNavbar from '../components/common components/ProductNavbar'
 import LostPassword from '../components/my account page components/LostPassword'
-import Footer from '../components/home page components/Footer'
+import Footer from '../components/common components/Footer'
 
 const Forget_Password_page = () => {
   return (

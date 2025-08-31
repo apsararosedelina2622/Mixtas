@@ -1,35 +1,13 @@
 import React, { useContext } from 'react'
 
-import { Link, useParams } from 'react-router-dom'
-import { MyContext } from '../../context/ContextProvider'
+import { Link } from 'react-router-dom'
 
-import { blog_page, blog } from '../../assets/assets'
+import { MyContext } from '../../context/ContextProvider'
+import { blog_page } from '../../assets/assets'
 
 const BlogBody = () => {
 
-    const { navigate } = useContext(MyContext)
-
-    const { id } = useParams()
-
-    const blogs = blog?.find((e) => e.id === Number(id))
-
-    let nextId = Number(id) + 1
-    let prevId = Number(id) - 1
-    let nextDesc = ''
-    let prevDesc = ''
-
-    let max_id = Object.keys(blog).length
-    {
-        blog.map((e) => {
-
-            if (nextId === e.id) {
-                nextDesc = e.desc
-            }
-            if (prevId == e.id) {
-                prevDesc = e.desc
-            }
-        })
-    }
+    const { navigate, blogs, max_id, blogID, nextDesc, prevDesc } = useContext(MyContext)
 
     return (
 
@@ -111,7 +89,7 @@ const BlogBody = () => {
 
                         <div className="d-flex gap-5 justify-content-between">
 
-                            {Number(id) >= 2 ?
+                            {Number(blogID) >= 2 ?
                                 <div className="d-flex" onClick={() => navigate(`/blog/${blogs.id - 1}`)} >
                                     <div>
                                         <i className="fa-solid text-secondary fa-arrow-left mx-3"></i>
@@ -123,7 +101,7 @@ const BlogBody = () => {
                                 </div>
                                 : <div className="d-flex gap-2 align-items-center"></div>}
 
-                            {Number(id) === max_id ? ('') :
+                            {Number(blogID) === max_id ? ('') :
                                 <div>
                                     <div className="d-flex text-end" onClick={() => navigate(`/blog/${blogs.id + 1}`)} >
                                         <div>
@@ -150,7 +128,7 @@ const BlogBody = () => {
 
                             <div className='my-4'>
                                 <p>Comment *</p>
-                                <textarea name="" className='w-100' rows={8} id=""></textarea>
+                                <textarea name="" className='w-100' rows={8}></textarea>
                             </div>
 
                             <div className='row my-4'>

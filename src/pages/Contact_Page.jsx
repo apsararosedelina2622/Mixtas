@@ -1,8 +1,8 @@
 import React from 'react'
 
-import ProductNavbar from '../components/product page components/ProductNavbar'
+import ProductNavbar from '../components/common components/ProductNavbar'
 import ContactUsPage from '../components/contact page components/ContactUsPage'
-import Footer from '../components/home page components/Footer'
+import Footer from '../components/common components/Footer'
 
 const Contact_Page = () => {
   return (

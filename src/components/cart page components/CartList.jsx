@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import NewInStore from './NewInStore'
 
 import { MyContext } from '../../context/ContextProvider'
-
 import { assets } from '../../assets/assets'
 
 const CartList = () => {
@@ -67,7 +66,7 @@ const CartList = () => {
                                                         <span className='btn btn-light border text-secondary fs-5 '>{product.quantity}</span>
                                                         <span className='btn btn-light border fs-5' onClick={() => quantityIncrement(product.id)}>+</span>
                                                     </div>
-                                                    <Link className='text-secondary ms-2' onClick={() => RemoveCart(product.id)}>Remove item</Link>
+                                                    <Link className='text-danger ms-2' onClick={() => RemoveCart(product.id)}>Remove item</Link>
                                                 </div>
                                             </div>
                                             <div>

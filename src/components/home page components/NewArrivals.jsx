@@ -1,9 +1,9 @@
 import React, { useContext } from 'react'
+
 import { Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import { MyContext } from '../../context/ContextProvider'
-
 import { product } from '../../assets/assets'
 
 const NewArrivals = () => {
@@ -26,6 +26,7 @@ const NewArrivals = () => {
                 className='col-lg-3 col-md-6 my-3 position-relative'
                 key={new_arr.desc}
                 onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
               >
 
                 <div onClick={() => navigate('/product/' + new_arr.id)}>
@@ -42,17 +43,17 @@ const NewArrivals = () => {
 
                 {hoveredIndex === index && (
                   <div className="position-absolute top-0 end-0 p-2">
-                    <div className="icon-wrapper" style={{ animationDelay: "0.3s" }} onClick={() => WishList(new_arr.id)} >
-                      <i className={`fa-heart mx-4 my-2 p-2 shadow-sm fs-5 bg-white rounded-circle ${wishListData.some(a => a.id === new_arr.id)
-                        ? 'fa-solid text-dark'
-                        : 'fa-regular'
+                    <div role='button' className="icon-wrapper mt-2 me-3" style={{ animationDelay: "0.3s" }} onClick={() => WishList(new_arr.id)} >
+                      <i className={`bi p-3 d-flex justify-content-center fs-5 shadow bg-white rounded-circle ${wishListData.some(a => a.id === new_arr.id)
+                        ? 'bi-suit-heart-fill text-dark'
+                        : 'bi-suit-heart'
                         }`} size={30} />
                     </div>
-                    <div className="icon-wrapper" style={{ animationDelay: "0.2s" }}>
-                      <i className="fa-solid fa-magnifying-glass text-dark mx-4 my-2 p-2 shadow-sm fs-5 bg-white rounded-circle" size={30} onClick={() => handleModalToggle(new_arr)} />
+                    <div role='button' className="icon-wrapper mt-2 me-3" style={{ animationDelay: "0.2s" }}>
+                      <i className="bi p-3 d-flex justify-content-center fs-5 bi-search text-dark shadow bg-white rounded-circle" size={30} onClick={() => handleModalToggle(new_arr)} />
                     </div>
-                    <div className="icon-wrapper mt-2" style={{ animationDelay: "0.1s" }} onClick={() => ToggleCart(new_arr.id)}>
-                      <i className={`mx-4 my-2 mt-2 px-2 py-1 shadow-sm fs-5 bg-white rounded-circle bi ${cart.some(a => a.id === new_arr.id)
+                    <div role='button' className="icon-wrapper mt-2 me-3" style={{ animationDelay: "0.1s" }} onClick={() => ToggleCart(new_arr.id)}>
+                      <i className={`bi p-3 d-flex justify-content-center fs-5 shadow bg-white rounded-circle ${cart.some(a => a.id === new_arr.id)
                         ? 'bi-cart-fill'
                         : 'bi-cart'
                         }`} size={30} />
@@ -68,7 +69,7 @@ const NewArrivals = () => {
       </div>
 
       {currentProduct && (
-        <Modal show={showModal} onHide={handleModalToggle} size='xl'>
+        <Modal show={showModal} onHide={handleModalToggle} size='xl' centered>
           <Modal.Header closeButton></Modal.Header>
           <Modal.Body>
             {isVisible && (
@@ -112,16 +113,16 @@ const NewArrivals = () => {
 
                 <div onClick={() => WishList(currentProduct.id)} className='d-flex' role='button'>
                   <div>
-                    <i className={`fa-heart ${wishListData.some(a => a.id === currentProduct.id)
-                      ? 'fa-solid text-danger'
-                      : 'fa-regular'
+                    <i className={`bi fs-5 ${wishListData.some(a => a.id === currentProduct.id)
+                      ? 'bi-suit-heart-fill text-danger'
+                      : 'bi-suit-heart'
                       }`}></i>
                   </div>
-                  <div className='mx-2'>
+                  <div className='mx-2 my-1'>
                     <p>
                       {wishListData.some(a => a.id === currentProduct.id)
-                        ? 'Browse wishlist'
-                        : 'Add to wishlist'}
+                        ? 'Remove from Wishlist'
+                        : 'Add to Wishlist'}
                     </p>
                   </div>
                 </div>

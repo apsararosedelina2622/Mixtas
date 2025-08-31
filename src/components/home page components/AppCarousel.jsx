@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation } from 'swiper/modules'
@@ -7,9 +7,13 @@ import 'swiper/css/navigation'
 
 import { Carousel } from 'react-bootstrap'
 
+import { MyContext } from '../../context/ContextProvider'
 import { carousel_img, sm_carousel_img } from '../../assets/assets'
 
 const AppCarousel = () => {
+
+  const { navigate } = useContext(MyContext)
+  
   return (
     <>
 
@@ -39,7 +43,7 @@ const AppCarousel = () => {
                   <h1 className="display-1 fw-bold text-dark">
                     Stylish <br /> Comfort For <br /> Fall Nights
                   </h1>
-                  <button className="btn btn-dark px-5 py-3 my-3 c-btn">Shop Now</button>
+                  <button className="btn btn-dark px-5 py-3 my-3 c-btn" onClick={() => navigate("/shop")}>Shop Now</button>
                 </div>
               </div>
             </SwiperSlide>

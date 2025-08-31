@@ -1,14 +1,18 @@
 import React from 'react'
 
-import ProductNavbar from '../components/product page components/ProductNavbar'
+import ProductNavbar from '../components/common components/ProductNavbar'
 import BlogBody from '../components/blog page components/BlogBody'
-import Footer from '../components/home page components/Footer'
+import Footer from '../components/common components/Footer'
+
+import ContextProvider from '../context/ContextProvider'
 
 const Blog_page = () => {
   return (
     <>
       <ProductNavbar />
-      <BlogBody />
+      <ContextProvider>
+        <BlogBody />
+      </ContextProvider>
       <Footer />
     </>
   )

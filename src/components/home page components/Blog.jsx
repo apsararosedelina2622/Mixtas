@@ -6,7 +6,6 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 
 import { MyContext } from "../../context/ContextProvider"
-
 import { blog } from '../../assets/assets'
 
 const Blog = () => {

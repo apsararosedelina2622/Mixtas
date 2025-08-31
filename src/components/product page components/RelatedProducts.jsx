@@ -9,7 +9,6 @@ import { Modal } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import { MyContext } from '../../context/ContextProvider'
-
 import { product } from '../../assets/assets'
 
 const RelatedProducts = () => {
@@ -43,6 +42,7 @@ const RelatedProducts = () => {
             <SwiperSlide
               key={product.id}
               onMouseEnter={() => setRelatedProductHoveredIndex(index)}
+              onMouseLeave={() => setRelatedProductHoveredIndex(null)}
             >
               <div className='d-flex flex-column my-3 position-relative' onClick={() => { navigate('/product/' + product.id) }}>
                 <img src={relatedProductHoveredIndex === index ? product.hover_img : product.img} alt={product.desc} className='w-100' />
@@ -55,18 +55,18 @@ const RelatedProducts = () => {
               </div>
 
               {relatedProductHoveredIndex === index && (
-                <div className="position-absolute top-0 end-0 p-3 d-flex flex-column">
-                  <div className="icon-wrapper" style={{ animationDelay: "0.3s" }} onClick={() => WishList(product.id)}>
-                    <i className={`fa-heart mx-2 my-2 p-2 shadow-sm fs-5 bg-white rounded-circle ${wishListData.some(a => a.id === product.id)
-                      ? 'fa-solid text-dark'
-                      : 'fa-regular'
+                <div className="position-absolute top-0 end-0 p-2">
+                  <div role="button" className="icon-wrapper mt-4 me-3" style={{ animationDelay: "0.3s" }} onClick={() => WishList(product.id)}>
+                    <i className={`bi p-3 d-flex justify-content-center fs-5 shadow bg-white rounded-circle ${wishListData.some(a => a.id === product.id)
+                      ? 'bi-suit-heart-fill text-dark'
+                      : 'bi-suit-heart'
                       }`} size={30} />
                   </div>
-                  <div className="icon-wrapper" style={{ animationDelay: "0.2s" }}>
-                    <i className="fa-solid fa-magnifying-glass text-dark mx-2 my-2 p-2 shadow-sm fs-5 bg-white rounded-circle" onClick={() => handleRelatedProductModalToggle(product)} />
+                  <div role="button" className="icon-wrapper mt-2 me-3" style={{ animationDelay: "0.2s" }}>
+                    <i className="bi p-3 d-flex justify-content-center fs-5 bi-search text-dark shadow bg-white rounded-circle" onClick={() => handleRelatedProductModalToggle(product)} />
                   </div>
-                  <div className="icon-wrapper mt-2" style={{ animationDelay: "0.1s" }} onClick={() => ToggleCart(product.id)}>
-                    <i className={`mx-2 my-2 px-2 py-1 shadow-sm fs-5 bg-white rounded-circle bi ${cart.some(a => a.id === product.id)
+                  <div role="button" className="icon-wrapper mt-2 me-3" style={{ animationDelay: "0.1s" }} onClick={() => ToggleCart(product.id)}>
+                    <i className={`bi p-3 d-flex justify-content-center fs-5 shadow bg-white rounded-circle ${cart.some(a => a.id === product.id)
                       ? 'bi-cart-fill'
                       : 'bi-cart'
                       }`} size={30} />
@@ -80,7 +80,7 @@ const RelatedProducts = () => {
       </div>
 
       {currentRelatedProduct && (
-        <Modal show={relatedProductShowModal} onHide={handleRelatedProductModalToggle} size="xl">
+        <Modal show={relatedProductShowModal} onHide={handleRelatedProductModalToggle} size="xl" centered>
           <Modal.Header closeButton></Modal.Header>
           <Modal.Body>
             {isVisible && (
@@ -124,16 +124,16 @@ const RelatedProducts = () => {
 
                 <div onClick={() => WishList(currentRelatedProduct.id)} className='d-flex' role='button'>
                   <div>
-                    <i className={`fa-heart ${wishListData.some(a => a.id === currentRelatedProduct.id)
-                      ? 'fa-solid text-danger'
-                      : 'fa-regular'
+                    <i className={`bi fs-5 ${wishListData.some(a => a.id === currentRelatedProduct.id)
+                      ? 'bi-suit-heart-fill text-danger'
+                      : 'bi-suit-heart'
                       }`}></i>
                   </div>
-                  <div className='mx-2'>
+                  <div className='mx-2 my-1'>
                     <p>
                       {wishListData.some(a => a.id === currentRelatedProduct.id)
-                        ? 'Browse wishlist'
-                        : 'Add to wishlist'}
+                        ? 'Remove from Wishlist'
+                        : 'Add to Wishlist'}
                     </p>
                   </div>
                 </div>

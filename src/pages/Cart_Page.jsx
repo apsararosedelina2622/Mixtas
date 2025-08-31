@@ -1,8 +1,8 @@
 import React from 'react'
 
-import ProductNavbar from '../components/product page components/ProductNavbar'
+import ProductNavbar from '../components/common components/ProductNavbar'
 import CartList from '../components/cart page components/CartList'
-import Footer from '../components/home page components/Footer'
+import Footer from '../components/common components/Footer'
 
 const Cart_Page = () => {
   return (

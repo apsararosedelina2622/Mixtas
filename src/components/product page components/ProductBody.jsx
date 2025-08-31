@@ -1,21 +1,14 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 
 import { Collapse } from 'react-bootstrap'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { MyContext } from '../../context/ContextProvider'
-
-import { product, product_body } from '../../assets/assets'
+import { product_body } from '../../assets/assets'
 
 const ProductBody = () => {
 
-  const { desc_visible, setDescVisible, add_info_visible, setAdd_info_visible, review, setReview, isVisible, AddToCart, wishListData, WishList } = useContext(MyContext)
-
-
-  let { id } = useParams()
-  const selectedProduct = product.find((e) => e.id === Number(id))
-
-  const [currentImage, setCurrentImage] = useState(selectedProduct?.img)
+  const { selectedProduct, currentImage, desc_visible, setDescVisible, add_info_visible, setAdd_info_visible, review, setReview, isVisible, AddToCart, wishListData, WishList } = useContext(MyContext)
 
   return (
     <div className='container'>
@@ -79,16 +72,16 @@ const ProductBody = () => {
 
           <div onClick={() => WishList(selectedProduct.id)} className='d-flex' role='button'>
             <div>
-              <i className={`fa-heart ${wishListData.some(a => a.id === selectedProduct.id)
-                ? 'fa-solid text-danger'
-                : 'fa-regular'
+              <i className={`bi fs-5 ${wishListData.some(a => a.id === selectedProduct.id)
+                ? 'bi-suit-heart-fill text-danger'
+                : 'bi-suit-heart'
                 }`}></i>
             </div>
-            <div className='mx-2'>
+            <div className='mx-2 my-1'>
               <p>
                 {wishListData.some(a => a.id === selectedProduct.id)
-                  ? 'Browse wishlist'
-                  : 'Add to wishlist'}
+                  ? 'Remove from Wishlist'
+                  : 'Add to Wishlist'}
               </p>
             </div>
 

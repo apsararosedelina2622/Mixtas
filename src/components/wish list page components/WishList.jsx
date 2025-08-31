@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
+
 import { Link } from 'react-router-dom'
 
 import { MyContext } from '../../context/ContextProvider'
-
 import { assets } from '../../assets/assets'
 
 const WishList = () => {
@@ -36,7 +36,7 @@ const WishList = () => {
 
                   <div className="d-flex justify-content-between">
                     <div className="d-flex align-items-center">
-                      <p className='fs-3 m-lg-3' onClick={() => RemoveWishListData(value.id)}>&times;</p>
+                      <p className='fs-2 m-lg-3 text-danger' role='button' onClick={() => RemoveWishListData(value.id)}>&times;</p>
                       <img src={value.img} alt="" className='d-none d-lg-block d-md-block mx-2' height={80} />
                     </div>
                     <div className='my-lg-4 py-md-2'>
