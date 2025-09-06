@@ -1,14 +1,19 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 
 import { Collapse } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 import { MyContext } from '../../context/ContextProvider'
-import { product_body } from '../../assets/assets'
+import { product, product_body } from '../../assets/assets'
 
 const ProductBody = () => {
 
-  const { selectedProduct, currentImage, desc_visible, setDescVisible, add_info_visible, setAdd_info_visible, review, setReview, isVisible, AddToCart, wishListData, WishList } = useContext(MyContext)
+  const { desc_visible, setDescVisible, add_info_visible, setAdd_info_visible, review, setReview, isVisible, wishListData, WishList, ToggleCart, cart } = useContext(MyContext)
+
+  let { id } = useParams()
+  const selectedProduct = product.find((e) => e.id === Number(id))
+
+  const [currentImage, setCurrentImage] = useState(selectedProduct?.img)
 
   return (
     <div className='container'>
@@ -66,7 +71,15 @@ const ProductBody = () => {
 
           <div className="d-lg-flex d-md-flex gap-4 align-items-center">
             <div>
-              <button className='btn btn-dark px-lg-4 w-100 my-3 py-2' onClick={() => AddToCart(selectedProduct?.id)}>Add to Cart</button>
+              <button className='btn btn-dark px-lg-4 w-100 my-3 py-2' onClick={() => ToggleCart(selectedProduct?.id)}>
+                {
+                  cart.some(a => a.id === selectedProduct.id)
+                  ?
+                    "Remove from Cart"
+                  :
+                    "Add to Cart"
+                }
+              </button>
             </div>
           </div>
 

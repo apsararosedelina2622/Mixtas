@@ -9,7 +9,7 @@ import { product } from '../../assets/assets'
 
 const ShopBody = () => {
 
-    const { navigate, pro_category, setPro_category, price_div, setPrice_div, color_div, setColor_div, size_div, setSize_div, tag_div, setTag_div, counts, values, currentShopProduct, handleShopModalToggle, ShopShowModal, shopHoveredIndex, setShopHoveredIndex, isVisible, AddToCart, WishList, wishListData, ToggleCart, cart } = useContext(MyContext)
+    const { navigate, pro_category, setPro_category, price_div, setPrice_div, color_div, setColor_div, size_div, setSize_div, tag_div, setTag_div, counts, values, currentShopProduct, handleShopModalToggle, ShopShowModal, shopHoveredIndex, setShopHoveredIndex, isVisible, WishList, wishListData, ToggleCart, cart } = useContext(MyContext)
 
     return (
         <>
@@ -325,7 +325,15 @@ const ShopBody = () => {
 
                                 <div className='d-lg-flex d-md-flex gap-4 my-3 align-items-center'>
                                     <div>
-                                        <button className='btn btn-dark px-lg-4 rounded-1 w-100 my-3 py-2' onClick={() => AddToCart(currentShopProduct.id)}>Add To Cart</button>
+                                        <button className='btn btn-dark px-lg-4 rounded-1 w-100 my-3 py-2' onClick={() => ToggleCart(currentShopProduct.id)}>
+                                            {
+                                                cart.some(a => a.id === currentShopProduct.id)
+                                                    ?
+                                                        "Remove from Cart"
+                                                    :
+                                                        "Add to Cart"
+                                            }
+                                        </button>
                                     </div>
                                 </div>
 

@@ -11,7 +11,7 @@ const ContextProvider = ({ children }) => {
 
     const navigate = useNavigate()
 
-    // AppNavbar
+    // Navbar
 
     const [show, setShow] = useState(false)
     const [cartshow, setCartShow] = useState(false)
@@ -82,11 +82,6 @@ const ContextProvider = ({ children }) => {
 
 
     // Shop Body
-
-    let { id } = useParams()
-    const selectedProduct = product.find((e) => e.id === Number(id))
-
-    const [currentImage, setCurrentImage] = useState(selectedProduct?.img)
 
     const [shopHoveredIndex, setShopHoveredIndex] = useState(null)
 
@@ -173,35 +168,21 @@ const ContextProvider = ({ children }) => {
     var [cart, setCart] = useState([])
     var [cartCount, setCartCount] = useState(0)
 
-    const AddToCart = (productID) => {
-        setIsVisible(true)
-        var productData = product.find(a => a.id === productID)
-        var existingProduct = cart.find(a => a.id === productID)
-        if (existingProduct) {
-            setCart(cart.map(item =>
-                item.id === productID
-                    ? { ...item, quantity: item.quantity + 1 }
-                    : item
-            ))
-        } else {
-            setCart([...cart, { ...productData, quantity: 1 }])
-        }
-        setTimeout(() => {
-            setIsVisible(false)
-        }, 5000)
-        setCartCount(a => a + 1)
-    }
-
     const ToggleCart = (productID) => {
+        setIsVisible(true)
         const productData = product.find(a => a.id === productID)
         const exists = cart.find(a => a.id === productID)
 
         if (exists) {
+            setIsVisible(false)
             setCart(cart.filter(a => a.id !== productID))
             setCartCount(a => a - exists.quantity)
         } else {
             setCart([...cart, { ...productData, quantity: 1 }])
             setCartCount(a => a + 1)
+            setTimeout(() => {
+                setIsVisible(false)
+            }, 8000)
         }
     }
 
@@ -301,7 +282,7 @@ const ContextProvider = ({ children }) => {
 
     const contextValue = {
 
-        // AppNavbar
+        // Navbar
         navigate,
         show, handleClose, handleShow,
         cartshow, carthandleClose, carthandleShow,
@@ -326,7 +307,6 @@ const ContextProvider = ({ children }) => {
         handlePopularModalToggle,
 
         // Shop Body
-        selectedProduct, currentImage,
         shopHoveredIndex, setShopHoveredIndex,
         pro_category, setPro_category,
         price_div, setPrice_div,
@@ -354,7 +334,7 @@ const ContextProvider = ({ children }) => {
         currentRelatedProduct, relatedProductShowModal,
 
         // Cart
-        AddToCart, cart,
+        cart,
         quantityIncrement, quantityDecrement,
         RemoveCart, ToggleCart, getCartTotal,
 

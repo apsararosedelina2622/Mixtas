@@ -13,7 +13,7 @@ import { product } from '../../assets/assets'
 
 const RelatedProducts = () => {
 
-  const { navigate, handleRelatedProductModalToggle, setRelatedProductHoveredIndex, relatedProductHoveredIndex, currentRelatedProduct, relatedProductShowModal, LikeBtn, setLikeBtn, AddToCart, isVisible, wishListData, WishList, ToggleCart, cart } = useContext(MyContext)
+  const { navigate, handleRelatedProductModalToggle, setRelatedProductHoveredIndex, relatedProductHoveredIndex, currentRelatedProduct, relatedProductShowModal, isVisible, wishListData, WishList, ToggleCart, cart } = useContext(MyContext)
 
   return (
     <>
@@ -118,7 +118,15 @@ const RelatedProducts = () => {
 
                 <div className='d-lg-flex d-md-flex gap-4 my-3 align-items-center'>
                   <div>
-                    <button className='btn btn-dark px-lg-4 rounded-1 w-100 my-3 py-2' onClick={() => AddToCart(currentRelatedProduct.id)}>Add To Cart</button>
+                    <button className='btn btn-dark px-lg-4 rounded-1 w-100 my-3 py-2' onClick={() => ToggleCart(currentRelatedProduct.id)}>
+                      {
+                        cart.some(a => a.id === currentRelatedProduct.id)
+                        ?
+                          "Remove from Cart"
+                        :
+                          "Add to Cart"
+                      }
+                    </button>
                   </div>
                 </div>
 

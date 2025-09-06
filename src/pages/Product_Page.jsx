@@ -5,15 +5,11 @@ import ProductBody from '../components/product page components/ProductBody'
 import RelatedProducts from '../components/product page components/RelatedProducts'
 import Footer from '../components/common components/Footer'
 
-import ContextProvider from '../context/ContextProvider'
-
 const Product = () => {
   return (
     <>
       <ProductNavbar />
-      <ContextProvider>
-        <ProductBody />
-      </ContextProvider>
+      <ProductBody />
       <RelatedProducts />
       <Footer />
     </>

@@ -14,7 +14,7 @@ import { product } from '../../assets/assets'
 
 const PopularProducts = () => {
 
-  const { navigate, popularHoveredIndex, setPopularHoveredIndex, popularShowModal, popularCurrentProduct, handlePopularModalToggle, WishList, wishListData, AddToCart, isVisible, cart, ToggleCart } = useContext(MyContext)
+  const { navigate, popularHoveredIndex, setPopularHoveredIndex, popularShowModal, popularCurrentProduct, handlePopularModalToggle, WishList, wishListData, isVisible, cart, ToggleCart } = useContext(MyContext)
 
   return (
     <>
@@ -137,7 +137,15 @@ const PopularProducts = () => {
 
                 <div className='d-lg-flex d-md-flex gap-4 my-3 align-items-center'>
                   <div>
-                    <button className='btn btn-dark px-lg-4 rounded-1 w-100 my-3 py-2' onClick={() => AddToCart(popularCurrentProduct.id)}>Add To Cart</button>
+                    <button className='btn btn-dark px-lg-4 rounded-1 w-100 my-3 py-2' onClick={() => ToggleCart(popularCurrentProduct.id)}>
+                      {
+                        cart.some(a => a.id === popularCurrentProduct.id)
+                        ?
+                          "Remove from Cart"
+                        :
+                          "Add to Cart"
+                      }
+                    </button>
                   </div>
                 </div>
 
